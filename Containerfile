@@ -1,4 +1,11 @@
 # Allow build scripts to be referenced without being copied into the final image
+FROM docker.io/archlinux:latest AS kernel
+
+RUN pacman -Syyuu base-devel git
+git clone https://aur.archlinux.org/linux-bazzite-bin.git
+cd linux-bazzite-bin
+makepkg -si
+
 FROM scratch AS ctx
 COPY build_files /
 
@@ -22,6 +29,10 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh
+
+RUN rm -rf "${BOOTC_ROOTFS_MOUNTPOINT}/usr/lib/modules/" "${BOOTC_ROOTFS_MOUNTPOINT}/boot"
+COPY --from=kernel /usr/lib/modules ${BOOTC_ROOTFS_MOUNTPOINT}/usr/lib/modules
+COPY --from=kernel /boot ${BOOTC_ROOTFS_MOUNTPOINT}/boot
 
 ### LINTING
 ## Verify final image and contents are correct.
