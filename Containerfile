@@ -1,6 +1,4 @@
 # Allow build scripts to be referenced without being copied into the final image
-FROM docker.io/archlinux:latest AS kernel
-
 ARG KERNEL_FLAVOR="${KERNEL_FLAVOR:-bazzite}"
 ARG KERNEL_VERSION="${KERNEL_VERSION:-6.16.4-102.bazzite.fc42.x86_64}"
 ARG FEDORA_VERSION="${FEDORA_VERSION:-42}"
