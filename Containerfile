@@ -2,6 +2,7 @@
 FROM docker.io/archlinux:latest AS kernel
 
 RUN pacman -Syyuu --noconfirm base-devel git sudo bash && \
+ls -s /usr/bin/bash /bin/sh && \
 useradd builduser -m && \ # Create the builduser
 passwd -d builduser && \ # Delete the buildusers password
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers && \ # Allow the builduser passwordless sudo
