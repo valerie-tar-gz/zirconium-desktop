@@ -2,9 +2,10 @@
 FROM docker.io/archlinux:latest AS kernel
 
 RUN pacman -Syyuu --noconfirm base-devel git && \
-git clone https://aur.archlinux.org/linux-bazzite-bin.git && \
-cd linux-bazzite-bin && \
-makepkg -si
+useradd builduser -m && \ # Create the builduser
+passwd -d builduser && \ # Delete the buildusers password
+printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers && \ # Allow the builduser passwordless sudo
+sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/linux-bazzite-bin.git && cd linux-bazzite-bin && makepkg -s --noconfirm'
 
 FROM scratch AS ctx
 COPY build_files /
