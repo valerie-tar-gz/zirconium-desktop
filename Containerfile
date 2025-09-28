@@ -1,10 +1,9 @@
 # Allow build scripts to be referenced without being copied into the final image
 FROM docker.io/archlinux:latest AS kernel
 
-RUN pacman -Syyuu --noconfirm base-devel git
-cd
-git clone https://aur.archlinux.org/linux-bazzite-bin.git
-cd linux-bazzite-bin
+RUN pacman -Syyuu --noconfirm base-devel git && \
+git clone https://aur.archlinux.org/linux-bazzite-bin.git && \
+cd linux-bazzite-bin && \
 makepkg -si
 
 FROM scratch AS ctx
