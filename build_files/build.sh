@@ -9,8 +9,15 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf5 install -y tmux 
+# Basic tools
+dnf5 install -y tuigreet flatpak micro
+
+#Bazzite Kernel (Currently has to be manually updated. I don't like that! One day it can change.)
+sudo dnf5 install https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-6.16.4-111.bazzite.fc42.x86_64.rpm \
+https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-core-6.16.4-111.bazzite.fc42.x86_64.rpm \
+https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-modules-6.16.4-111.bazzite.fc42.x86_64.rpm \
+https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-modules-core-6.16.4-111.bazzite.fc42.x86_64.rpm
+
 
 # Use a COPR Example:
 #
