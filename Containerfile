@@ -2,6 +2,7 @@
 FROM docker.io/archlinux:latest AS kernel
 
 RUN pacman -Syyuu --noconfirm base-devel git
+cd
 git clone https://aur.archlinux.org/linux-bazzite-bin.git
 cd linux-bazzite-bin
 makepkg -si
