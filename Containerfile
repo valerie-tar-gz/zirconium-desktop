@@ -1,7 +1,7 @@
 # Allow build scripts to be referenced without being copied into the final image
 FROM docker.io/archlinux:latest AS kernel
 
-RUN pacman -Syyuu --noconfirm base-devel git && \
+RUN pacman -Syyuu --noconfirm base-devel git sudo bash && \
 useradd builduser -m && \ # Create the builduser
 passwd -d builduser && \ # Delete the buildusers password
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers && \ # Allow the builduser passwordless sudo
