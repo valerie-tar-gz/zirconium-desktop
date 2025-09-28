@@ -6,7 +6,7 @@ ls -s /usr/bin/bash /bin/sh && \
 useradd builduser -m && \ # Create the builduser
 passwd -d builduser && \ # Delete the buildusers password
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers && \ # Allow the builduser passwordless sudo
-sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/linux-bazzite-bin.git && cd linux-bazzite-bin && makepkg -s --noconfirm'
+sudo -u builduser 'cd ~ && git clone https://aur.archlinux.org/linux-bazzite-bin.git && cd linux-bazzite-bin && makepkg -s --noconfirm'
 
 FROM scratch AS ctx
 COPY build_files /
