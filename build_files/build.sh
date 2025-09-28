@@ -12,18 +12,6 @@ set -ouex pipefail
 # Basic tools
 dnf5 install -y tuigreet flatpak micro
 
-#Bazzite Kernel (Currently has to be manually updated. I don't like that! One day it can change.)
-sudo dnf5 install -y https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-modules-core-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-Modules-Core
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-core-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-core
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-modules-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-modules
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-modules-extra-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-modules-extra
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-devel-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-devel
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-tools-libs-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-tools-libs
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-tools-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-tools
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-devel-matched-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel-devel-matched
-https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-111/kernel-6.16.4-111.bazzite.fc42.x86_64.rpm \ #Kernel
-
-
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
