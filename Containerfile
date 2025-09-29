@@ -23,10 +23,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh
 
-RUN rm -rf "${BOOTC_ROOTFS_MOUNTPOINT}/usr/lib/modules/" "${BOOTC_ROOTFS_MOUNTPOINT}/boot"
-COPY --from=kernel /usr/lib/modules ${BOOTC_ROOTFS_MOUNTPOINT}/usr/lib/modules
-COPY --from=kernel /boot ${BOOTC_ROOTFS_MOUNTPOINT}/boot
-
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
