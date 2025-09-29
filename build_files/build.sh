@@ -26,6 +26,7 @@ dnf5 install -y tuigreet flatpak micro
 #Kernel stuff
 
 AKMODS_FLAVOR="bazzite"
+KERNEL="6.16.4-114.fc42.x86_64"
 skopeo copy --retry-times 3 docker://ghcr.io/ublue-os/akmods:"${AKMODS_FLAVOR}"-"$(rpm -E %fedora)"-"${KERNEL}" dir:/tmp/akmods
 AKMODS_TARGZ=$(jq -r '.layers[].digest' </tmp/akmods/manifest.json | cut -d : -f 2)
 tar -xvzf /tmp/akmods/"$AKMODS_TARGZ" -C /tmp/
