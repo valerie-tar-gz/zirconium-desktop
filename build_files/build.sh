@@ -12,21 +12,6 @@ set -ouex pipefail
 # Basic tools
 dnf5 install -y tuigreet flatpak micro
 
-# Install Bazzite Kernel
-#dnf5 install -y --nodeps --allmatches https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-core-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Core
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-devel-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Devel
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-devel-matched-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Devel Matched
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-modules-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Modules
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-modules-core-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Modules Core
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-modules-extra-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Modules Extra
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-modules-extra-matched-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Modules Extra Matched
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-modules-internal-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Modules Internal
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-tools-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Tools
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-tools-debuginfo-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Tools Debuginfo
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-tools-libs-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Tools Libs
-#https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-tools-libs-devel-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Tools Libs Devel
-
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
