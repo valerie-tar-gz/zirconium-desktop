@@ -13,7 +13,7 @@ set -ouex pipefail
 dnf5 install -y tuigreet flatpak micro
 
 # Install Bazzite Kernel
-dnf5 install https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel
+dnf5 install -y -e --nodeps --allmatches https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel
 https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-core-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Core
 https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-devel-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Devel
 https://github.com/bazzite-org/kernel-bazzite/releases/download/6.16.4-114/kernel-devel-matched-6.16.4-114.bazzite.fc42.x86_64.rpm \ #Kernel Devel Matched
