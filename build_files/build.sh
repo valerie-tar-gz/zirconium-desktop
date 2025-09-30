@@ -14,7 +14,7 @@ dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release
 
 
 # Basic tools
-dnf5 install -y tuigreet flatpak micro
+dnf5 install -y tuigreet flatpak micro fastfetch
 
 # Use a COPR Example:
 #
