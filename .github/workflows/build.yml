@@ -77,15 +77,11 @@ jobs:
           sep-tags: " "
           sep-annotations: " "
 
-      - name: Build Image
-        id: build_image
-        uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
-        with:
-          containerfiles: ./Containerfile
-          image: ${{ env.IMAGE_NAME }}
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
-          oci: false
+      - name: Build image
+        id: build
+        run: |
+          sudo apt install -y podman
+          sudo podman build -t "${{env.IMAGE_NAME}}:${{env.DEFAULT_TAG}}" -f ./Containerfile .
 
       - name: Run Rechunker
         id: rechunk
