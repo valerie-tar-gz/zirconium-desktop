@@ -81,6 +81,7 @@ systemctl enable --global chezmoi-init.service
 systemctl enable --global chezmoi-update.timer
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
+cp /etc/skel/Pictures/Wallpapers/ /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
 git clone "https://github.com/zirconium-dev/zdots.git" /usr/share/zirconium/zdots
 install -d /etc/niri/
 cp -f /usr/share/zirconium/zdots/dot_config/niri/config.kdl /etc/niri/config.kdl
