@@ -13,18 +13,22 @@ dnf -y copr enable errornointernet/quickshell
 dnf -y copr disable errornointernet/quickshell
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell
 
+dnf -y copr enable scottames/ghostty
+dnf -y copr disable scottames/ghostty
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:scottames:ghostty install ghostty
+
 # # Extracts colors from wallpapers
+# # TODO: also include cliphist :)
 # # TODO: MOVE TO OUR THING INSTEAD
 # dnf -y copr enable purian23/matugen
 # dnf -y copr disable purian23/matugen
 # dnf -y --enablerepo copr:copr.fedorainfracloud.org:puritan23/matugen install matugen
 
 dnf -y copr enable ublue-os/packages
-#dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
-#	ublue-brew \
-#	uupd
-dnf -y install ublue-brew uupd
 dnf -y copr disable ublue-os/packages
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
+	ublue-brew \
+	uupd
 systemctl enable brew-setup.service
 systemctl enable uupd.service
 
@@ -34,7 +38,6 @@ dnf -y install \
     chezmoi \
     fastfetch \
     flatpak \
-    foot \
     fpaste \
     gamescope \
     git-core \
@@ -50,6 +53,7 @@ dnf -y install \
     wl-clipboard \
     wlsunset \
     xdg-desktop-portal-gnome \
+    xdg-user-dirs \
     xwayland-satellite
 
 rm -rf /usr/share/doc/just
@@ -89,3 +93,5 @@ trap 'rm -rf "${MAPLE_TMPDIR}"' EXIT
 LATEST_RELEASE_FONT="$(curl "https://api.github.com/repos/subframe7536/maple-font/releases/latest" | jq '.assets[] | select(.name == "MapleMono-Variable.zip") | .browser_download_url' -rc)"
 curl -fSsLo "${MAPLE_TMPDIR}/maple.zip" "${LATEST_RELEASE_FONT}"
 unzip "${MAPLE_TMPDIR}/maple.zip" -d "/usr/share/fonts/Maple Mono"
+
+echo 'source /usr/share/zirconium/shell/pure.bash' | tee -a "/etc/bashrc"
