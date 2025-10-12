@@ -22,6 +22,13 @@ s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME="zirconium"|
 /^REDHAT_SUPPORT_PRODUCT_VERSION=/d
 EOF
 
+# GO AWAY fedora flatpaks.
+rm -f /usr/lib/systemd/system/flatpak-add-fedora-repos.service
+mkdir -p /etc/flatpak/remotes.d/
+dnf remove -y fedora-flathub-remote fedora-third-party
+mkdir -p /etc/flatpak/remotes.d/
+curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo
+rm -rf /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 
 KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | sort | tail -n 1)"
 export DRACUT_NO_XATTR=1
