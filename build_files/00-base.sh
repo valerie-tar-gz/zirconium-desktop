@@ -33,7 +33,8 @@ dnf -y install \
     whois \
     plymouth \
     tuned \
-    tuned-ppd
+    tuned-ppd \
+    unzip
 
 systemctl enable firewalld
 

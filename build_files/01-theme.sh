@@ -5,16 +5,13 @@ set -xeuo pipefail
 install -d /usr/share/zirconium/
 
 dnf -y copr enable yalter/niri
-#dnf -y copr disable yalter/niri
-#dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri install niri
-dnf -y install niri
 dnf -y copr disable yalter/niri
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri install niri
 rm -rf /usr/share/doc/niri
 
 dnf -y copr enable errornointernet/quickshell
-#dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell
-dnf -y install quickshell
 dnf -y copr disable errornointernet/quickshell
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell
 
 # # Extracts colors from wallpapers
 # # TODO: MOVE TO OUR THING INSTEAD
@@ -71,32 +68,24 @@ file /etc/niri/config.kdl | grep -F -e "empty" -v
 systemctl preset --global noctalia
 systemctl preset --global xwayland-satellite
 systemctl preset --global foot-server
-systemctl enable --global noctalia
-systemctl enable --global xwayland-satellite
-systemctl enable --global foot-server
+systemctl preset --global chezmoi-init
+systemctl preset --global chezmoi-update
+systemctl enable --global noctalia.service
+systemctl enable --global xwayland-satellite.service
+systemctl enable --global foot-server.service
+systemctl enable --global chezmoi-init.service
+systemctl enable --global chezmoi-update.timer
 
-git clone "https://github.com/noctalia-dev/noctalia-shell/" /usr/share/zirconium/noctalia-shell
+git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
+git clone "https://github.com/zirconium-dev/zdots.git" /usr/share/zirconium/zdots
+install -d /etc/niri/
+cp -f /usr/share/zirconium/zdots/dot_config/niri/config.kdl /etc/niri/config.kdl
 
-#TODO: Move this back to base script
-HOME_URL="https://github.com/valerie-tar-gz/zirconium"
-echo "zirconium" | tee "/etc/hostname"
-# OS Release File (changed in order with upstream)
-# TODO: change ANSI_COLOR
-sed -i -f - /usr/lib/os-release <<EOF
-s|^NAME=.*|NAME=\"Zirconium\"|
-s|^ID=.*|ID=\"zirconium\"|
-s|^PRETTY_NAME=.*|PRETTY_NAME=\"Zirconium\"|
-s|^VERSION_CODENAME=.*|VERSION_CODENAME=\"Pants\"|
-s|^VARIANT_ID=.*|VARIANT_ID=""|
-s|^HOME_URL=.*|HOME_URL=\"${HOME_URL}\"|
-s|^BUG_REPORT_URL=.*|BUG_REPORT_URL=\"${HOME_URL}/issues\"|
-s|^SUPPORT_URL=.*|SUPPORT_URL=\"${HOME_URL}/issues\"|
-s|^CPE_NAME=\".*\"|CPE_NAME=\"cpe:/o:valerie-tar-gz:zirconium\"|
-s|^DOCUMENTATION_URL=.*|"${HOME_URL}"|
-s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME="zirconium"|
+mkdir -p "/usr/share/fonts/Maple Mono"
 
-/^REDHAT_BUGZILLA_PRODUCT=/d
-/^REDHAT_BUGZILLA_PRODUCT_VERSION=/d
-/^REDHAT_SUPPORT_PRODUCT=/d
-/^REDHAT_SUPPORT_PRODUCT_VERSION=/d
-EOF
+MAPLE_TMPDIR="$(mktemp -d)"
+trap 'rm -rf "${MAPLE_TMPDIR}"' EXIT
+
+LATEST_RELEASE_FONT="$(curl "https://api.github.com/repos/subframe7536/maple-font/releases/latest" | jq '.assets[] | select(.name == "MapleMono-Variable.zip") | .browser_download_url' -rc)"
+curl -fSsLo "${MAPLE_TMPDIR}/maple.zip" "${LATEST_RELEASE_FONT}"
+unzip "${MAPLE_TMPDIR}/maple.zip" -d "/usr/share/fonts/Maple Mono"
