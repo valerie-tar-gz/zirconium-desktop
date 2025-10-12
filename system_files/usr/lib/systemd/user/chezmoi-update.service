@@ -2,5 +2,7 @@
 Description=Chezmoi Update
 
 [Service]
-ExecStart=chezmoi update --no-tty --keep-going
+ExecStart=mkdir -p %h/.config/zirconium/chezmoi
+ExecStart=touch %h/.config/zirconium/chezmoi/chezmoi.toml
+ExecStart=yes s | chezmoi update --no-tty --keep-going -S %h/.local/share/zirconium/chezmoi --verbose --config %h/.config/zirconium/chezmoi/chezmoi.toml
 Type=oneshot
