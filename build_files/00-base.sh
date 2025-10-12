@@ -57,12 +57,4 @@ tee /usr/lib/tmpfiles.d/resolved-default.conf <<'EOF'
 L /etc/resolv.conf - - - - ../run/systemd/resolve/stub-resolv.conf
 EOF
 
-# GO AWAY fedora flatpaks.
-rm -f /usr/lib/systemd/system/flatpak-add-fedora-repos.service
-mkdir -p /etc/flatpak/remotes.d/
-dnf remove -y fedora-flathub-remote fedora-third-party
-mkdir -p /etc/flatpak/remotes.d/
-curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo
-rm -rf /usr/lib/systemd/system/flatpak-add-fedora-repos.service
-
 systemctl preset systemd-resolved.service
