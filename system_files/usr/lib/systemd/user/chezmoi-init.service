@@ -1,9 +1,11 @@
 [Unit]
 Description=Initializes Chezmoi if directory is missing
-ConditionPathExists=!%h/.local/share/chezmoi/.git/
+ConditionPathExists=!%h/.local/share/zirconium/chezmoi/.git/
 
 [Service]
-ExecStart=chezmoi init --apply file:///usr/share/zirconium/zdots/.git
+ExecStart=mkdir -p %h/.config/zirconium/chezmoi
+ExecStart=touch %h/.config/zirconium/chezmoi/chezmoi.toml
+ExecStart=chezmoi init --apply file:///usr/share/zirconium/zdots/.git -S %h/.local/share/zirconium/chezmoi --config %h/.config/zirconium/chezmoi/chezmoi.toml
 Type=oneshot
 
 [Install]
