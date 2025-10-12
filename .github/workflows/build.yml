@@ -80,7 +80,6 @@ jobs:
       - name: Build image
         id: build
         run: |
-          sudo apt install -y podman
           sudo podman build -t "${{env.IMAGE_NAME}}:${{env.DEFAULT_TAG}}" -f ./Containerfile .
 
       - name: Run Rechunker

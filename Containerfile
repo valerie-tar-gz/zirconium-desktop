@@ -20,6 +20,4 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build/99-cleanup.sh
 
-RUN usermod -p "$(echo "changeme" | mkpasswd -s)" root
-
 RUN rm -rf /var/* && bootc container lint
