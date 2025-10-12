@@ -6,7 +6,6 @@ echo "zirconium" | tee "/etc/hostname"
 # TODO: change ANSI_COLOR
 sed -i -f - /usr/lib/os-release <<EOF
 s|^NAME=.*|NAME=\"Zirconium\"|
-s|^ID=.*|ID=\"zirconium\"|
 s|^PRETTY_NAME=.*|PRETTY_NAME=\"Zirconium\"|
 s|^VERSION_CODENAME=.*|VERSION_CODENAME=\"Pants\"|
 s|^VARIANT_ID=.*|VARIANT_ID=""|
@@ -14,7 +13,7 @@ s|^HOME_URL=.*|HOME_URL=\"${HOME_URL}\"|
 s|^BUG_REPORT_URL=.*|BUG_REPORT_URL=\"${HOME_URL}/issues\"|
 s|^SUPPORT_URL=.*|SUPPORT_URL=\"${HOME_URL}/issues\"|
 s|^CPE_NAME=\".*\"|CPE_NAME=\"cpe:/o:valerie-tar-gz:zirconium\"|
-s|^DOCUMENTATION_URL=.*|"${HOME_URL}"|
+s|^DOCUMENTATION_URL=.*|DOCUMENTATION_URL=\"${HOME_URL}\"|
 s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME="zirconium"|
 
 /^REDHAT_BUGZILLA_PRODUCT=/d
