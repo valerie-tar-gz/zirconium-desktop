@@ -1,7 +1,7 @@
 [Unit]
 Description=Timer for Chezmoi Update
 # This service will only execute for a user with an existing chezmoi directory
-ConditionPathExists=%h/.local/share/chezmoi
+ConditionPathExists=%h/.local/share/zirconium/chezmoi
 
 [Timer]
 OnBootSec=5m
