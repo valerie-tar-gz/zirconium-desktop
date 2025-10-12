@@ -5,13 +5,16 @@ set -xeuo pipefail
 install -d /usr/share/zirconium/
 
 dnf -y copr enable yalter/niri
+#dnf -y copr disable yalter/niri
+#dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri install niri
+dnf -y install niri
 dnf -y copr disable yalter/niri
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri install niri
 rm -rf /usr/share/doc/niri
 
 dnf -y copr enable errornointernet/quickshell
+#dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell
+dnf -y install quickshell
 dnf -y copr disable errornointernet/quickshell
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell
 
 # # Extracts colors from wallpapers
 # # TODO: MOVE TO OUR THING INSTEAD
@@ -20,10 +23,11 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell in
 # dnf -y --enablerepo copr:copr.fedorainfracloud.org:puritan23/matugen install matugen
 
 dnf -y copr enable ublue-os/packages
+#dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
+#	ublue-brew \
+#	uupd
+dnf -y install ublue-brew uupd
 dnf -y copr disable ublue-os/packages
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
-	ublue-brew \
-	uupd
 systemctl enable brew-setup.service
 systemctl enable uupd.service
 
