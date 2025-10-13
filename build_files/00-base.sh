@@ -72,4 +72,4 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
 	uupd \
 	ublue-os-udev-rules
 systemctl enable brew-setup.service
-systemctl enable uupd.service
+systemctl enable uupd.timer
