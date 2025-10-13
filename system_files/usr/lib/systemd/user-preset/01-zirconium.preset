@@ -1,5 +1,4 @@
 enable noctalia.service
 enable xwayland-satellite.service
-enable foot-server.service
 enable chezmoi-init.service
 enable chezmoi-update.timer

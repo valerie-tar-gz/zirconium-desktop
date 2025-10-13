@@ -26,10 +26,15 @@ dnf -y install \
     tiwilink-firmware \
     firewalld
 
-dnf -y remove \
-    chrony # :vlone:
+# This package adds "[systemd] Failed Units: *" to the bashrc startup
+dnf -y remove console-login-helper-messages \
+    chrony
 
 dnf -y install \
+    plymouth \
+    plymouth-system-theme \
+    fwupd \
+    libcamera{,-{v4l2,gstreamer,tools}} \
     whois \
     plymouth \
     tuned \
@@ -58,3 +63,12 @@ L /etc/resolv.conf - - - - ../run/systemd/resolve/stub-resolv.conf
 EOF
 
 systemctl preset systemd-resolved.service
+
+dnf -y copr enable ublue-os/packages
+dnf -y copr disable ublue-os/packages
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
+	ublue-brew \
+	uupd \
+	ublue-os-udev-rules
+systemctl enable brew-setup.service
+systemctl enable uupd.service
