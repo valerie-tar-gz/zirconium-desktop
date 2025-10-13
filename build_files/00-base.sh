@@ -39,7 +39,8 @@ dnf -y install \
     plymouth \
     tuned \
     tuned-ppd \
-    unzip
+    unzip \
+    steam-devices
 
 systemctl enable firewalld
 
