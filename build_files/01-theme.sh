@@ -24,14 +24,6 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:scottames:ghostty install gho
 # dnf -y copr disable purian23/matugen
 # dnf -y --enablerepo copr:copr.fedorainfracloud.org:puritan23/matugen install matugen
 
-dnf -y copr enable ublue-os/packages
-dnf -y copr disable ublue-os/packages
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
-	ublue-brew \
-	uupd
-systemctl enable brew-setup.service
-systemctl enable uupd.service
-
 dnf -y remove alacritty
 dnf -y install \
     brightnessctl \
@@ -71,12 +63,10 @@ file /etc/niri/config.kdl | grep -F -e "empty" -v
 
 systemctl preset --global noctalia
 systemctl preset --global xwayland-satellite
-systemctl preset --global foot-server
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
 systemctl enable --global noctalia.service
 systemctl enable --global xwayland-satellite.service
-systemctl enable --global foot-server.service
 systemctl enable --global chezmoi-init.service
 systemctl enable --global chezmoi-update.timer
 
