@@ -36,7 +36,6 @@ dnf -y install \
     fwupd \
     libcamera{,-{v4l2,gstreamer,tools}} \
     whois \
-    plymouth \
     tuned \
     tuned-ppd \
     unzip \
