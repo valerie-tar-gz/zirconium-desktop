@@ -40,7 +40,9 @@ dnf -y install \
     tuned \
     tuned-ppd \
     unzip \
-    steam-devices
+    steam-devices \
+	fuse-devel \
+	uxplay
 
 systemctl enable firewalld
 
