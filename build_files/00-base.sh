@@ -41,6 +41,9 @@ dnf -y install \
     unzip \
     steam-devices \
     fuse-devel \
+    fuse \
+    fuse-common \
+    rclone \
     uxplay
 
 systemctl enable firewalld
