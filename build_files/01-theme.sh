@@ -31,7 +31,6 @@ dnf -y install \
     fastfetch \
     flatpak \
     fpaste \
-    gamescope \
     git-core \
     gnome-keyring \
     greetd \
@@ -47,11 +46,18 @@ dnf -y install \
     xdg-desktop-portal-gnome \
     xdg-user-dirs \
     xwayland-satellite
-
 rm -rf /usr/share/doc/just
 
 systemctl enable greetd
 systemctl enable firewalld
+
+# Sacrificed to the :steamhappy: emoji old god
+dnf install -y \
+    default-fonts-core-emoji \
+    google-noto-fonts-all \
+    google-noto-color-emoji-fonts \
+    google-noto-emoji-fonts \
+    glibc-all-langpacks
 
 cp -avf "/ctx/files"/. /
 mkdir -p /etc/skel/Pictures/Wallpapers
