@@ -51,6 +51,8 @@ dnf -y install \
     xwayland-satellite
 rm -rf /usr/share/doc/just
 
+sed -i '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd
+
 dnf install -y --setopt=install_weak_deps=False \
     kf6-kirigami \
     polkit-kde
