@@ -29,10 +29,10 @@ dnf -y install \
     brightnessctl \
     chezmoi \
     ddcutil \
-    fzf \
     fastfetch \
     flatpak \
     fpaste \
+    fzf \
     git-core \
     gnome-keyring \
     greetd \
@@ -42,6 +42,7 @@ dnf -y install \
     orca \
     pipewire \
     tuigreet \
+    udiskie \
     wireplumber \
     wl-clipboard \
     wlsunset \
@@ -61,6 +62,7 @@ add_wants_niri() {
 add_wants_niri noctalia.service
 add_wants_niri xwayland-satellite.service
 add_wants_niri plasma-polkit-agent.service
+add_wants_niri udiskie.service
 cat /usr/lib/systemd/user/niri.service
 
 systemctl enable greetd
@@ -85,11 +87,13 @@ systemctl enable --global chezmoi-init.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global noctalia.service
 systemctl enable --global plasma-polkit-agent.service
+systemctl enable --global udiskie.service
 systemctl enable --global xwayland-satellite.service
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
 systemctl preset --global noctalia
 systemctl preset --global plasma-polkit-agent
+systemctl preset --global udiskie
 systemctl preset --global xwayland-satellite
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
