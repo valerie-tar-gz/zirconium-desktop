@@ -56,6 +56,13 @@ dnf install -y --setopt=install_weak_deps=False \
     polkit-kde
 
 sed -i "s/After=.*/After=graphical-session.target/" /usr/lib/systemd/user/plasma-polkit-agent.service
+
+# Codecs for video thumbnails on nautilus
+dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
+dnf config-manager setopt fedora-multimedia.enabled=0
+dnf -y install --enablerepo=fedora-multimedia \
+    ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer
+
 add_wants_niri() {
     sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
 }
