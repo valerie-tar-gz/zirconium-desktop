@@ -11,7 +11,7 @@ Currently, the best way to install Zirconium is to rebase from an existing Fedor
 
 Once you have some flavour of Fedora Atomic installed, run `sudo bootc switch ghcr.io/zirconium-dev/zirconium` 
 
-We're working on ISOs.
+If you're having issues, ask for help in our [Discord](https://discord.gg/mmgNQpxwhW). We're working on ISOs.
 
 ## Can I still customize Niri/Noctalia?
 Yes! We do update our dotfiles in OS updates, however you're not forced to use them. We're hoping at some point to be able to make the dotfile update process less destructive. 
