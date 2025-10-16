@@ -28,6 +28,8 @@ dnf -y remove alacritty
 dnf -y install \
     brightnessctl \
     chezmoi \
+    ddcutil \
+    fzf \
     fastfetch \
     flatpak \
     fpaste \
@@ -48,6 +50,19 @@ dnf -y install \
     xwayland-satellite
 rm -rf /usr/share/doc/just
 
+dnf install -y --setopt=install_weak_deps=False \
+    kf6-kirigami \
+    polkit-kde
+
+sed -i "s/After=.*/After=graphical-session.target/" /usr/lib/systemd/user/plasma-polkit-agent.service
+add_wants_niri() {
+    sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
+}
+add_wants_niri noctalia.service
+add_wants_niri xwayland-satellite.service
+add_wants_niri plasma-polkit-agent.service
+cat /usr/lib/systemd/user/niri.service
+
 systemctl enable greetd
 systemctl enable firewalld
 
@@ -65,22 +80,25 @@ ln -s /usr/share/zirconium/skel/Pictures/Wallpapers/mountains.png /etc/skel/Pict
 ln -s /usr/share/zirconium/skel/.face /etc/skel/.face
 file /etc/skel/.face | grep -F -e "empty" -v
 file /etc/skel/Pictures/Wallpapers/* | grep -F -e "empty" -v
-file /etc/niri/config.kdl | grep -F -e "empty" -v
 
-systemctl preset --global noctalia
-systemctl preset --global xwayland-satellite
-systemctl preset --global chezmoi-init
-systemctl preset --global chezmoi-update
-systemctl enable --global noctalia.service
-systemctl enable --global xwayland-satellite.service
 systemctl enable --global chezmoi-init.service
 systemctl enable --global chezmoi-update.timer
+systemctl enable --global noctalia.service
+systemctl enable --global plasma-polkit-agent.service
+systemctl enable --global xwayland-satellite.service
+systemctl preset --global chezmoi-init
+systemctl preset --global chezmoi-update
+systemctl preset --global noctalia
+systemctl preset --global plasma-polkit-agent
+systemctl preset --global xwayland-satellite
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
 cp /etc/skel/Pictures/Wallpapers/mountains.png /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
 git clone "https://github.com/zirconium-dev/zdots.git" /usr/share/zirconium/zdots
 install -d /etc/niri/
 cp -f /usr/share/zirconium/zdots/dot_config/niri/config.kdl /etc/niri/config.kdl
+file /etc/niri/config.kdl | grep -F -e "empty" -v
+stat /etc/skel/.face /etc/skel/Pictures/Wallpapers/* /etc/niri/config.kdl
 
 mkdir -p "/usr/share/fonts/Maple Mono"
 
