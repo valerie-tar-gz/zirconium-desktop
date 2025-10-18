@@ -4,12 +4,7 @@
         "type": "file",
         "source": "/usr/share/zirconium/glorp.txt",
         "color": {
-            "1": "94",
-            "2": "47",
-            "3": "95",
-            "4": "0",
-            "5": "8",
-            "6": "55"
+            "1": "15",
         }
     },
     "display": {
