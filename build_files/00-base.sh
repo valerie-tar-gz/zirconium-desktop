@@ -44,7 +44,8 @@ dnf -y install \
     fuse \
     fuse-common \
     rclone \
-    uxplay
+    uxplay \
+    man-db
 
 systemctl enable firewalld
 
