@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - main
+      - nvidia-support
     paths-ignore:
       - "**/README.md"
   workflow_dispatch:
