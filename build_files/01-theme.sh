@@ -17,8 +17,12 @@ dnf -y copr enable scottames/ghostty
 dnf -y copr disable scottames/ghostty
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:scottames:ghostty install ghostty
 
+dnf -y copr enable alternateved/cliphist
+dnf -y copr disable alternateved/cliphist
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:alternateved:cliphist install cliphist
+
+
 # # Extracts colors from wallpapers
-# # TODO: also include cliphist :)
 # # TODO: MOVE TO OUR THING INSTEAD
 # dnf -y copr enable purian23/matugen
 # dnf -y copr disable purian23/matugen
