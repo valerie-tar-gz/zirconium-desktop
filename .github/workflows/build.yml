@@ -92,9 +92,7 @@ jobs:
       - name: Pull containers
         run: |
           sudo podman pull quay.io/fedora/fedora-bootc:43
-          if [ "${{ matrix.image_name }}" =~ "nvidia" ]; then
-            sudo podman pull ghcr.io/ublue-os/akmods-nvidia-open:main-43-x86_64
-          fi
+          sudo podman pull ghcr.io/ublue-os/akmods-nvidia-open:main-43-x86_64
 
       - name: Define env.CONTAINER_TARGET
         run: |
@@ -108,9 +106,7 @@ jobs:
       - name: Cleanup images
         run: |
           sudo podman image rm quay.io/fedora/fedora-bootc:43
-          if [ "${{ matrix.image_name }}" =~ "nvidia" ]; then
-            sudo podman image rm ghcr.io/ublue-os/akmods-nvidia-open:main-43-x86_64
-          fi
+          sudo podman image rm ghcr.io/ublue-os/akmods-nvidia-open:main-43-x86_64
 
       - name: Run Rechunker
         id: rechunk
