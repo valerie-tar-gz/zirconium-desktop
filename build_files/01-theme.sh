@@ -17,12 +17,11 @@ dnf -y copr enable scottames/ghostty
 dnf -y copr disable scottames/ghostty
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:scottames:ghostty install ghostty
 
-# # Extracts colors from wallpapers
-# # TODO: also include cliphist :)
-# # TODO: MOVE TO OUR THING INSTEAD
-# dnf -y copr enable purian23/matugen
-# dnf -y copr disable purian23/matugen
-# dnf -y --enablerepo copr:copr.fedorainfracloud.org:puritan23/matugen install matugen
+dnf -y copr enable zirconium/packages
+dnf -y copr disable zirconium/packages
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
+    matugen \
+    cliphist
 
 dnf -y remove alacritty
 dnf -y install \
