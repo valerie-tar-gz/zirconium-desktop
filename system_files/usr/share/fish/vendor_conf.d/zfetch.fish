@@ -4,8 +4,8 @@
 function fish_greeting
     if test -d "$HOME"
         if test ! -e "$HOME"/.config/no-show-user-motd
-            if test -x /usr/bin/glorpfetch
-                /usr/bin/glorpfetch
+            if test -x /usr/bin/zfetch
+                /usr/bin/zfetch
             end
         end
     end
