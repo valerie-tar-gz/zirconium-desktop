@@ -76,5 +76,16 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages install \
 	ublue-brew \
 	uupd \
 	ublue-os-udev-rules
+
+# ts so annoying :face_holding_back_tears: :v: 67
+sed -i 's|uupd|& --disable-module-distrobox|' /usr/lib/systemd/system/uupd.service
+
 systemctl enable brew-setup.service
 systemctl enable uupd.timer
+
+dnf -y copr enable ublue-os/flatpak-test
+dnf -y copr disable ublue-os/flatpak-test
+dnf -y --repo=copr:copr.fedorainfracloud.org:ublue-os:flatpak-test swap flatpak flatpak
+dnf -y --repo=copr:copr.fedorainfracloud.org:ublue-os:flatpak-test swap flatpak-libs flatpak-libs
+dnf -y --repo=copr:copr.fedorainfracloud.org:ublue-os:flatpak-test swap flatpak-session-helper flatpak-session-helper
+rpm -q flatpak --qf "%{NAME} %{VENDOR}\n" | grep ublue-os

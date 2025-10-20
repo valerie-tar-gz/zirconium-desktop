@@ -33,14 +33,16 @@ dnf -y install \
     fpaste \
     fzf \
     git-core \
+    glow \
     gnome-keyring \
     greetd \
     greetd-selinux \
-    just \
     input-remapper \
+    just \
     nautilus \
     orca \
     pipewire \
+    steam-devices \
     tuigreet \
     udiskie \
     wireplumber \
@@ -94,6 +96,7 @@ ln -s /usr/share/zirconium/skel/.face /etc/skel/.face
 file /etc/skel/.face | grep -F -e "empty" -v
 file /etc/skel/Pictures/Wallpapers/* | grep -F -e "empty" -v
 
+systemctl enable flatpak-preinstall.service
 systemctl enable --global chezmoi-init.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global noctalia.service
