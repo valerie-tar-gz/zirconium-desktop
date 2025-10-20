@@ -38,6 +38,7 @@ dnf -y install \
     greetd \
     greetd-selinux \
     just \
+    input-remapper \
     nautilus \
     orca \
     pipewire \
@@ -82,10 +83,10 @@ systemctl enable firewalld
 # Sacrificed to the :steamhappy: emoji old god
 dnf install -y \
     default-fonts-core-emoji \
-    google-noto-fonts-all \
     google-noto-color-emoji-fonts \
     google-noto-emoji-fonts \
-    glibc-all-langpacks
+    glibc-all-langpacks \
+    default-fonts
 
 cp -avf "/ctx/files"/. /
 mkdir -p /etc/skel/Pictures/Wallpapers
