@@ -26,3 +26,11 @@ toggle-user-motd:
         touch "${TARGET}"
         echo "Disabled the MOTD"
     fi
+
+restart-noctalia:
+    #!/usr/bin/env bash
+    systemctl restart --user noctalia
+
+preinstalled-flatpaks:
+    #!/usr/bin/env bash
+    flatpak preinstall --reinstall
