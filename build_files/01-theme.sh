@@ -17,16 +17,16 @@ dnf -y copr enable scottames/ghostty
 dnf -y copr disable scottames/ghostty
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:scottames:ghostty install ghostty
 
-# # Extracts colors from wallpapers
-# # TODO: also include cliphist :)
-# # TODO: MOVE TO OUR THING INSTEAD
-# dnf -y copr enable purian23/matugen
-# dnf -y copr disable purian23/matugen
-# dnf -y --enablerepo copr:copr.fedorainfracloud.org:puritan23/matugen install matugen
+dnf -y copr enable zirconium/packages
+dnf -y copr disable zirconium/packages
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
+    matugen \
+    cliphist
 
 dnf -y remove alacritty
 dnf -y install \
     brightnessctl \
+    cava \
     chezmoi \
     ddcutil \
     fastfetch \
@@ -34,14 +34,16 @@ dnf -y install \
     fpaste \
     fzf \
     git-core \
+    glow \
     gnome-keyring \
     greetd \
     greetd-selinux \
-    just \
     input-remapper \
+    just \
     nautilus \
     orca \
     pipewire \
+    steam-devices \
     tuigreet \
     udiskie \
     wireplumber \
@@ -89,12 +91,8 @@ dnf install -y \
     default-fonts
 
 cp -avf "/ctx/files"/. /
-mkdir -p /etc/skel/Pictures/Wallpapers
-ln -s /usr/share/zirconium/skel/Pictures/Wallpapers/mountains.png /etc/skel/Pictures/Wallpapers/mountains.png
-ln -s /usr/share/zirconium/skel/.face /etc/skel/.face
-file /etc/skel/.face | grep -F -e "empty" -v
-file /etc/skel/Pictures/Wallpapers/* | grep -F -e "empty" -v
 
+systemctl enable flatpak-preinstall.service
 systemctl enable --global chezmoi-init.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global noctalia.service
@@ -111,12 +109,12 @@ systemctl preset --global udiskie
 systemctl preset --global xwayland-satellite
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
-cp /etc/skel/Pictures/Wallpapers/mountains.png /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
+cp /usr/share/zirconium/skel/Pictures/Wallpapers/mountains.png /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
 git clone "https://github.com/zirconium-dev/zdots.git" /usr/share/zirconium/zdots
 install -d /etc/niri/
 cp -f /usr/share/zirconium/zdots/dot_config/niri/config.kdl /etc/niri/config.kdl
 file /etc/niri/config.kdl | grep -F -e "empty" -v
-stat /etc/skel/.face /etc/skel/Pictures/Wallpapers/* /etc/niri/config.kdl
+stat /etc/niri/config.kdl
 
 mkdir -p "/usr/share/fonts/Maple Mono"
 

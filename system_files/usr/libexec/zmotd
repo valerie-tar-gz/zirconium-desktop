@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+TARGET_ZIRCONIUM_MOTD_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/zirconium/no-show-user-motd"
+if test ! -e "$TARGET_ZIRCONIUM_MOTD_CONFIG"; then
+  glow /usr/share/zirconium/motd/main.md
+fi
