@@ -45,7 +45,9 @@ dnf -y install \
     fuse-common \
     rclone \
     uxplay \
-    man-db
+    man-db \
+    ifuse \
+    libimobiledevice
 
 systemctl enable firewalld
 
