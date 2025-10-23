@@ -38,6 +38,7 @@ dnf -y install \
     gnome-keyring \
     greetd \
     greetd-selinux \
+    gvfs-smb \
     input-remapper \
     just \
     nautilus \
