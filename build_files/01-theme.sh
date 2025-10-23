@@ -34,7 +34,6 @@ dnf -y install \
     fpaste \
     fzf \
     git-core \
-    glow \
     gnome-keyring \
     greetd \
     greetd-selinux \
