@@ -31,7 +31,7 @@ dnf -y remove console-login-helper-messages \
     chrony
 
 dnf -y install \
-	cifs_utils \
+	cifs-utils \
     gvfs-smb \
     plymouth \
     plymouth-system-theme \
