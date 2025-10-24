@@ -53,12 +53,17 @@ dnf -y install \
     xwayland-satellite
 rm -rf /usr/share/doc/just
 
-sed -i '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd
-cat /etc/pam.d/greetd
 
 dnf install -y --setopt=install_weak_deps=False \
     kf6-kirigami \
-    polkit-kde
+    qt6ct \
+    polkit-kde \
+    plasma-breeze \
+    kf6-qqc2-desktop-style
+
+sed -i '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd
+cat /etc/pam.d/greetd
+
 
 sed -i "s/After=.*/After=graphical-session.target/" /usr/lib/systemd/user/plasma-polkit-agent.service
 
