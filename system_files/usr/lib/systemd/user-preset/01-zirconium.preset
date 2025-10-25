@@ -4,3 +4,4 @@ enable chezmoi-init.service
 enable chezmoi-update.timer
 enable plasma-polkit-agent.service
 enable swayidle.service
+enable app-com.mitchellh.ghostty.service

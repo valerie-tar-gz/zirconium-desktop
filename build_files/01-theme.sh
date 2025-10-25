@@ -11,7 +11,7 @@ rm -rf /usr/share/doc/niri
 
 dnf -y copr enable errornointernet/quickshell
 dnf -y copr disable errornointernet/quickshell
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell-git
 
 dnf -y copr enable scottames/ghostty
 dnf -y copr disable scottames/ghostty
@@ -98,12 +98,14 @@ cp -avf "/ctx/files"/. /
 
 systemctl enable flatpak-preinstall.service
 systemctl enable --global chezmoi-init.service
+systemctl enable --global app-com.mitchellh.ghostty.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global noctalia.service
 systemctl enable --global plasma-polkit-agent.service
 systemctl enable --global swayidle.service
 systemctl enable --global udiskie.service
 systemctl enable --global xwayland-satellite.service
+systemctl preset --global app-com.mitchellh.ghostty.service
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
 systemctl preset --global noctalia
