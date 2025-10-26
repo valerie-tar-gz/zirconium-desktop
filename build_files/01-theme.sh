@@ -4,9 +4,10 @@ set -xeuo pipefail
 
 install -d /usr/share/zirconium/
 
-dnf -y copr enable yalter/niri
-dnf -y copr disable yalter/niri
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri install niri
+dnf -y copr enable yalter/niri-git
+dnf -y copr disable yalter/niri-git
+echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalter:niri-git.repo
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri-git install niri
 rm -rf /usr/share/doc/niri
 
 dnf -y copr enable errornointernet/quickshell
