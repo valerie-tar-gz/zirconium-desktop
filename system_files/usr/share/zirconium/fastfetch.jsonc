@@ -96,6 +96,7 @@
         {
             "type": "packages",
             "key": " 󰏖"
+            "disabled": ["rpm"]
         },
         "break",
         {
