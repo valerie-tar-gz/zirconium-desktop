@@ -114,7 +114,7 @@ dnf -y remove alacritty
 declare -a ENABLEREPO_FLAGS=()
 for copr_repo in "${COPR_REPOS_USED[@]}"; do
     # Convert owner/repo to copr namespace format
-    local repo_namespace="copr:copr.fedorainfracloud.org:${copr_repo//\//:}"
+    repo_namespace="copr:copr.fedorainfracloud.org:${copr_repo//\//:}"
     ENABLEREPO_FLAGS+=("--enablerepo=${repo_namespace}")
 done
 
@@ -177,7 +177,7 @@ systemctl preset --global swayidle
 systemctl preset --global udiskie
 systemctl preset --global xwayland-satellite
 
-git clone "https://github.com/zirconium-dev/zdots.git" /usr/share/zirconium/zdots
+git clone "https://github.com/hanthor/zdots.git" /usr/share/zirconium/zdots
 install -d /etc/niri/
 cp -f /usr/share/zirconium/zdots/dot_config/niri/config.kdl /etc/niri/config.kdl
 file /etc/niri/config.kdl | grep -F -e "empty" -v
