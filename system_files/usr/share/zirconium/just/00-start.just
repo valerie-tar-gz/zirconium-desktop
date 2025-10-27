@@ -27,9 +27,9 @@ toggle-user-motd:
         echo "Disabled the MOTD"
     fi
 
-restart-noctalia:
+restart-dms:
     #!/usr/bin/env bash
-    systemctl restart --user noctalia
+    systemctl restart --user dms
 
 preinstalled-flatpaks:
     #!/usr/bin/env bash
