@@ -1,4 +1,4 @@
-enable noctalia.service
+enable dms.service
 enable xwayland-satellite.service
 enable chezmoi-init.service
 enable chezmoi-update.timer
