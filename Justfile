@@ -45,3 +45,9 @@ disk-image $base_dir=base_dir $filesystem=filesystem:
         fallocate -l 20G "${base_dir}/bootable.img"
     fi
     just bootc install to-disk --via-loopback /data/bootable.img --filesystem "${filesystem}" --wipe
+
+quick-iterate:
+    #!/usr/bin/env bash
+    podman build -t zirconium:latest --no-cache .
+    just rootful
+    just disk-image

@@ -2,7 +2,7 @@
 ***Do you like how I dance? I've got Zirconium pants!***
 
 ## What is Zirconium?
-Zirconium is an opinionated fedora-bootc image that makes use of Niri and Noctalia to create a usable out of the box TWM experience.
+Zirconium is an opinionated fedora-bootc image that makes use of Niri and DankMaterialShell to create a usable out of the box TWM experience.
 
 Zirconium is built primarily for container-focused development and day-to-day usage, however gaming is still more than possible. For a fully gaming-focused experience, use Bazzite.
 
@@ -13,7 +13,7 @@ Once you have some flavour of Fedora Atomic installed, run `sudo bootc switch gh
 
 If you're having issues, ask for help in our [Discord](https://discord.gg/mmgNQpxwhW). We're working on ISOs.
 
-## Can I still customize Niri/Noctalia?
+## Can I still customize Niri/DankMaterialShell?
 Yes! We do update our dotfiles in OS updates, however you're not forced to use them. We're hoping at some point to be able to make the dotfile update process less destructive. 
 
 ## Zirconium is a stupid name. Why did you pick Zirconium?

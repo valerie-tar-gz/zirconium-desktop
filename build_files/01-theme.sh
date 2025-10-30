@@ -10,9 +10,19 @@ echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalt
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri-git install niri
 rm -rf /usr/share/doc/niri
 
-dnf -y copr enable errornointernet/quickshell
-dnf -y copr disable errornointernet/quickshell
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:errornointernet:quickshell install quickshell-git
+dnf -y copr enable avengemedia/danklinux
+dnf -y copr disable avengemedia/danklinux
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:avengemedia:danklinux install quickshell-git
+
+dnf -y copr enable avengemedia/dms-git
+dnf -y copr disable avengemedia/dms-git
+dnf -y \
+    --enablerepo copr:copr.fedorainfracloud.org:avengemedia:dms-git \
+    --enablerepo copr:copr.fedorainfracloud.org:avengemedia:danklinux \
+    install --setopt=install_weak_deps=False \
+    dms \
+    dms-cli \
+    dgop
 
 dnf -y copr enable scottames/ghostty
 dnf -y copr disable scottames/ghostty
@@ -23,6 +33,10 @@ dnf -y copr disable zirconium/packages
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
     matugen \
     cliphist
+
+# Delete this ASAP: https://github.com/AvengeMedia/DankMaterialShell/pull/585/files needs to be merged
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
+    dms-greeter
 
 dnf -y remove alacritty
 dnf -y install \
@@ -38,6 +52,7 @@ dnf -y install \
     gnome-keyring \
     greetd \
     greetd-selinux \
+    webp-pixbuf-loader \
     input-remapper \
     just \
     nautilus \
@@ -65,19 +80,17 @@ dnf install -y --setopt=install_weak_deps=False \
 sed -i '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd
 cat /etc/pam.d/greetd
 
-
 sed -i "s/After=.*/After=graphical-session.target/" /usr/lib/systemd/user/plasma-polkit-agent.service
 
 # Codecs for video thumbnails on nautilus
-dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
-dnf config-manager setopt fedora-multimedia.enabled=0
-dnf -y install --enablerepo=fedora-multimedia \
-    ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer
+# dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
+# dnf config-manager setopt fedora-multimedia.enabled=0
+# dnf -y install --enablerepo=fedora-multimedia \
+#     ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer
 
 add_wants_niri() {
     sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
 }
-add_wants_niri noctalia.service
 add_wants_niri plasma-polkit-agent.service
 add_wants_niri swayidle.service
 add_wants_niri udiskie.service
@@ -101,7 +114,7 @@ systemctl enable flatpak-preinstall.service
 systemctl enable --global chezmoi-init.service
 systemctl enable --global app-com.mitchellh.ghostty.service
 systemctl enable --global chezmoi-update.timer
-systemctl enable --global noctalia.service
+systemctl enable --global dms.service
 systemctl enable --global plasma-polkit-agent.service
 systemctl enable --global swayidle.service
 systemctl enable --global udiskie.service
@@ -109,7 +122,7 @@ systemctl enable --global xwayland-satellite.service
 systemctl preset --global app-com.mitchellh.ghostty.service
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
-systemctl preset --global noctalia
+systemctl preset --global dms
 systemctl preset --global plasma-polkit-agent
 systemctl preset --global swayidle
 systemctl preset --global udiskie

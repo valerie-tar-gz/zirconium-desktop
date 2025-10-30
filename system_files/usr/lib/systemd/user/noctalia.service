@@ -1,6 +1,6 @@
 [Unit]
 Description=Noctalia Shell Service
-PartOf=graphical-session.target
+# PartOf=graphical-session.target
 After=graphical-session.target
 
 [Service]
