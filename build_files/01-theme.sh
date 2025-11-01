@@ -22,6 +22,7 @@ dnf -y \
     install --setopt=install_weak_deps=False \
     dms \
     dms-cli \
+    dms-greeter \
     dgop
 
 dnf -y copr enable scottames/ghostty
@@ -34,10 +35,6 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
     matugen \
     cliphist
 
-# Delete this ASAP: https://github.com/AvengeMedia/DankMaterialShell/pull/585/files needs to be merged
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
-    dms-greeter
-
 dnf -y remove alacritty
 dnf -y install \
     brightnessctl \
@@ -49,10 +46,10 @@ dnf -y install \
     fpaste \
     fzf \
     git-core \
+    glycin-thumbnailer \
     gnome-keyring \
     greetd \
     greetd-selinux \
-    webp-pixbuf-loader \
     input-remapper \
     just \
     nautilus \
@@ -61,6 +58,7 @@ dnf -y install \
     steam-devices \
     tuigreet \
     udiskie \
+    webp-pixbuf-loader \
     wireplumber \
     wl-clipboard \
     wlsunset \
@@ -83,10 +81,10 @@ cat /etc/pam.d/greetd
 sed -i "s/After=.*/After=graphical-session.target/" /usr/lib/systemd/user/plasma-polkit-agent.service
 
 # Codecs for video thumbnails on nautilus
-# dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
-# dnf config-manager setopt fedora-multimedia.enabled=0
-# dnf -y install --enablerepo=fedora-multimedia \
-#     ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer
+dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
+dnf config-manager setopt fedora-multimedia.enabled=0
+dnf -y install --enablerepo=fedora-multimedia \
+    ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer
 
 add_wants_niri() {
     sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
