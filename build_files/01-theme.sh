@@ -115,6 +115,8 @@ systemctl enable --global app-com.mitchellh.ghostty.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global dms.service
 systemctl enable --global cliphist.service
+systemctl enable --global gnome-keyring-daemon.socket
+systemctl enable --global gnome-keyring-daemon.service
 systemctl enable --global plasma-polkit-agent.service
 systemctl enable --global swayidle.service
 systemctl enable --global udiskie.service
