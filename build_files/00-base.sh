@@ -31,25 +31,26 @@ dnf -y remove console-login-helper-messages \
     chrony
 
 dnf -y install \
-	cifs-utils \
+    cifs-utils \
+    fuse \
+    fuse-common \
+    fuse-devel \
+    fwupd \
     gvfs-smb \
+    ifuse \
+    libcamera{,-{v4l2,gstreamer,tools}} \
+    libimobiledevice
+    man-db \
     plymouth \
     plymouth-system-theme \
-    fwupd \
-    libcamera{,-{v4l2,gstreamer,tools}} \
-    whois \
+    rclone \
+    steam-devices \
+    systemd-container \
     tuned \
     tuned-ppd \
     unzip \
-    steam-devices \
-    fuse-devel \
-    fuse \
-    fuse-common \
-    rclone \
     uxplay \
-    man-db \
-    ifuse \
-    libimobiledevice
+    whois \
 
 systemctl enable firewalld
 
