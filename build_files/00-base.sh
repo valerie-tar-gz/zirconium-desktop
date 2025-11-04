@@ -44,7 +44,7 @@ dnf -y install \
     gvfs-smb \
     ifuse \
     libcamera{,-{v4l2,gstreamer,tools}} \
-    libimobiledevice
+    libimobiledevice \
     man-db \
     plymouth \
     plymouth-system-theme \
