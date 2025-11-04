@@ -24,14 +24,19 @@ dnf -y install \
     nxpwireless-firmware \
     realtek-firmware \
     tiwilink-firmware \
-    firewalld
 
 # This package adds "[systemd] Failed Units: *" to the bashrc startup
 dnf -y remove console-login-helper-messages \
     chrony
 
+dnf install -y \
+  alsa-firmware \
+  alsa-sof-firmware \
+  alsa-tools-firmware
+
 dnf -y install \
     cifs-utils \
+    firewalld \
     fuse \
     fuse-common \
     fuse-devel \
@@ -39,7 +44,7 @@ dnf -y install \
     gvfs-smb \
     ifuse \
     libcamera{,-{v4l2,gstreamer,tools}} \
-    libimobiledevice
+    libimobiledevice \
     man-db \
     plymouth \
     plymouth-system-theme \
@@ -50,7 +55,7 @@ dnf -y install \
     tuned-ppd \
     unzip \
     uxplay \
-    whois \
+    whois
 
 systemctl enable firewalld
 
