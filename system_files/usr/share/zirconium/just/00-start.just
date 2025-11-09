@@ -65,4 +65,4 @@ reset-niri:
     zjust zdots-reset "${HOME}/.config/niri"
 
 update-greeter:
-    dms-greeter-sync
+    dms greeter sync
