@@ -48,6 +48,7 @@ dnf -y install \
     git-core \
     glycin-thumbnailer \
     gnome-keyring \
+    gnome-keyring-pam \
     greetd \
     greetd-selinux \
     input-remapper \
