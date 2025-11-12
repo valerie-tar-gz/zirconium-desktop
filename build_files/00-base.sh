@@ -32,7 +32,8 @@ dnf -y remove console-login-helper-messages \
 dnf install -y \
   alsa-firmware \
   alsa-sof-firmware \
-  alsa-tools-firmware
+  alsa-tools-firmware \
+  intel-audio-firmware
 
 dnf -y install \
     cifs-utils \
