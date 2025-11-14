@@ -68,7 +68,6 @@ dnf -y install \
     xwayland-satellite
 rm -rf /usr/share/doc/just
 
-
 dnf install -y --setopt=install_weak_deps=False \
     kf6-kirigami \
     qt6ct \
@@ -78,8 +77,6 @@ dnf install -y --setopt=install_weak_deps=False \
 
 sed -i '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd
 cat /etc/pam.d/greetd
-
-sed -i "s/After=.*/After=graphical-session.target/" /usr/lib/systemd/user/plasma-polkit-agent.service
 
 # Codecs for video thumbnails on nautilus
 dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
@@ -91,10 +88,8 @@ add_wants_niri() {
     sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
 }
 add_wants_niri cliphist.service
-add_wants_niri plasma-polkit-agent.service
 add_wants_niri swayidle.service
 add_wants_niri udiskie.service
-add_wants_niri xwayland-satellite.service
 cat /usr/lib/systemd/user/niri.service
 
 systemctl enable greetd
@@ -118,18 +113,14 @@ systemctl enable --global dms.service
 systemctl enable --global cliphist.service
 systemctl enable --global gnome-keyring-daemon.socket
 systemctl enable --global gnome-keyring-daemon.service
-systemctl enable --global plasma-polkit-agent.service
 systemctl enable --global swayidle.service
 systemctl enable --global udiskie.service
-systemctl enable --global xwayland-satellite.service
 systemctl preset --global app-com.mitchellh.ghostty.service
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
 systemctl preset --global cliphist
-systemctl preset --global plasma-polkit-agent
 systemctl preset --global swayidle
 systemctl preset --global udiskie
-systemctl preset --global xwayland-satellite
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
 cp /usr/share/zirconium/skel/Pictures/Wallpapers/mountains.png /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
