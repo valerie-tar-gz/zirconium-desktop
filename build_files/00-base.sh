@@ -42,8 +42,10 @@ dnf -y install \
     fuse-common \
     fuse-devel \
     fwupd \
+	gvfs-mtp \
     gvfs-smb \
     ifuse \
+	jmtpfs \
     libcamera{,-{v4l2,gstreamer,tools}} \
     libimobiledevice \
     man-db \
