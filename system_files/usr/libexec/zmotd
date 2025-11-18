@@ -16,10 +16,9 @@ if test ! -e "$TARGET_ZIRCONIUM_MOTD_CONFIG"; then
     ${slight_red} zjust toggle-user-motd ${reset}           │ Toggle this banner on/off
     ${slight_red} zjust zdots-update ${reset}               │ Update your unmodified dotfiles
     ${slight_red} zjust update-greeter ${reset}             │ Update your greeter with modifications from your current user
+    ${slight_red} zjust reset-niri ${reset}                 │ Reset niri to the default configuration
 
-    We've updated Zirconium to use Dank Material Shell instead of Noctalia, please run
-    ${slight_red} zjust reset-niri ${reset} to migrate your keybindings to it (NOTE: THIS WILL RESET ALL YOUR CONFIGS FOR NIRI)
-    You can keep using noctalia by running that, then running ${slight_red} zjust switch-to-noctalia ${reset}
+    We've moved to foot as our main terminal, run ${slight_red} zjust use-foot ${reset} or reset niri to update your configuration
 
 EOF
 fi

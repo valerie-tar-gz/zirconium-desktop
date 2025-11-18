@@ -25,10 +25,6 @@ dnf -y \
     dms-greeter \
     dgop
 
-dnf -y copr enable scottames/ghostty
-dnf -y copr disable scottames/ghostty
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:scottames:ghostty install ghostty
-
 dnf -y copr enable zirconium/packages
 dnf -y copr disable zirconium/packages
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
@@ -43,6 +39,7 @@ dnf -y install \
     ddcutil \
     fastfetch \
     flatpak \
+    foot \
     fpaste \
     fzf \
     git-core \
@@ -67,6 +64,7 @@ dnf -y install \
     xdg-user-dirs \
     xwayland-satellite
 rm -rf /usr/share/doc/just
+ln -s footclient /usr/bin/ghostty
 
 dnf install -y --setopt=install_weak_deps=False \
     kf6-kirigami \
@@ -90,6 +88,7 @@ add_wants_niri() {
 add_wants_niri cliphist.service
 add_wants_niri swayidle.service
 add_wants_niri udiskie.service
+add_wants_niri foot.service
 cat /usr/lib/systemd/user/niri.service
 
 systemctl enable greetd
@@ -107,7 +106,7 @@ cp -avf "/ctx/files"/. /
 
 systemctl enable flatpak-preinstall.service
 systemctl enable --global chezmoi-init.service
-systemctl enable --global app-com.mitchellh.ghostty.service
+systemctl enable --global foot.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global dms.service
 systemctl enable --global cliphist.service
@@ -115,12 +114,12 @@ systemctl enable --global gnome-keyring-daemon.socket
 systemctl enable --global gnome-keyring-daemon.service
 systemctl enable --global swayidle.service
 systemctl enable --global udiskie.service
-systemctl preset --global app-com.mitchellh.ghostty.service
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
 systemctl preset --global cliphist
 systemctl preset --global swayidle
 systemctl preset --global udiskie
+systemctl preset --global foot
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
 cp /usr/share/zirconium/skel/Pictures/Wallpapers/mountains.png /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
