@@ -42,6 +42,7 @@ dnf -y install \
     foot \
     fpaste \
     fzf \
+    gamescope \
     git-core \
     glycin-thumbnailer \
     gnome-keyring \
