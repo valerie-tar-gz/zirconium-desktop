@@ -36,30 +36,33 @@ dnf install -y \
   intel-audio-firmware
 
 dnf -y install \
-    cifs-utils \
-    firewalld \
-    fuse \
-    fuse-common \
-    fuse-devel \
-    fwupd \
+  audit \
+  audispd-plugins \
+  cifs-utils \
+  firewalld \
+  fuse \
+  fuse-common \
+  fuse-devel \
+  fwupd \
 	gvfs-mtp \
-    gvfs-smb \
-    ifuse \
+  gvfs-smb \
+  ifuse \
 	jmtpfs \
-    libcamera{,-{v4l2,gstreamer,tools}} \
-    libimobiledevice \
-    man-db \
-    plymouth \
-    plymouth-system-theme \
-    rclone \
-    steam-devices \
-    systemd-container \
-    tuned \
-    tuned-ppd \
-    unzip \
-    uxplay \
-    whois
+  libcamera{,-{v4l2,gstreamer,tools}} \
+  libimobiledevice \
+  man-db \
+  plymouth \
+  plymouth-system-theme \
+  rclone \
+  steam-devices \
+  systemd-container \
+  tuned \
+  tuned-ppd \
+  unzip \
+  uxplay \
+  whois
 
+systemctl enable auditd
 systemctl enable firewalld
 
 sed -i 's|^ExecStart=.*|ExecStart=/usr/bin/bootc update --quiet|' /usr/lib/systemd/system/bootc-fetch-apply-updates.service
